@@ -2,7 +2,6 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './BookShelf'
-import Book from './Book'
 
 
 
@@ -18,6 +17,7 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false
   }
+
 
   componentDidMount() {
       BooksAPI.getAll()
@@ -40,6 +40,7 @@ class BooksApp extends React.Component {
 
 
   render() {
+
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -66,25 +67,24 @@ class BooksApp extends React.Component {
         ) : (
 
           <div className="list-books">
-            <Book selectValue={this.state.selectValue}/>
             <div className="list-books-content">
               <div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
-                    <BookShelf books={this.state.books} shelf="currentlyReading" />
+                    <BookShelf books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
-                    <BookShelf books={this.state.books} shelf="wantToRead"/>
+                    <BookShelf books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
-                    <BookShelf books={this.state.books} shelf="read"/>
+                    <BookShelf books={this.state.books.filter((book) => 'read' === book.shelf)} />
                   </div>
                 </div>
               </div>
