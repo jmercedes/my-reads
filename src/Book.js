@@ -2,22 +2,19 @@ import React, {Component} from 'react'
 
 class Book extends Component{
 
-  state = {
-
+  changeNumber=()=> {
+    this.props.changeNumber();//call child method
   }
 
-  handleChange = (event) => {
-    console.log("value has changed")
-  }
+
 
   render(){
-
     return (
             <div className="book">
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+ this.props.thumbnail +')' }}></div>
                 <div className="book-shelf-changer">
-                  <select value={this.props.bookshelf} onChange={this.handleChange} >
+                  <select value={this.props.bookshelf} onChange={this.changeNumber} >
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
@@ -37,19 +34,20 @@ export default Book
 
 
 
-// const Book = (props) => {
+// const Book = (book, update) => {
 //
-//   console.log(props.bookshelf)
+//   //console.log(update(1))
 //
-// const handleChange = () => {
-//   console.log('Click happended')
-// }
+// // const handleChange = () => {
+// //   console.log('Click happended')
+// // }
+//
 //   return (
 //           <div className="book">
 //             <div className="book-top">
-//               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+ props.thumbnail +')' }}></div>
+//               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+ book.thumbnail +')' }}></div>
 //               <div className="book-shelf-changer">
-//                 <select value={props.bookshelf} onChange={this.handleChange} >
+//                 <select value={book.shelf} onChange="..." >
 //                   <option value="none" disabled>Move to...</option>
 //                   <option value="currentlyReading">Currently Reading</option>
 //                   <option value="wantToRead">Want to Read</option>
@@ -58,8 +56,8 @@ export default Book
 //                 </select>
 //               </div>
 //             </div>
-//             <div className="book-title">{props.title}</div>
-//             <div className="book-authors">{props.author}</div>
+//             <div className="book-title">{book.title}</div>
+//             <div className="book-authors">{book.author}</div>
 //             </div>
 //   );
 // };

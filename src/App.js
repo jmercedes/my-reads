@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './BookShelf'
@@ -8,7 +8,8 @@ import BookShelf from './BookShelf'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    selectValue: '',
+    selected: 'xJ',
+    number: 1,
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -28,19 +29,50 @@ class BooksApp extends React.Component {
         })
   }
 
-  moveBook = (book) => {
-    this.setState((currentState) => ({
-      books: currentState.books.filter((b) => {
-        //return c.id !== contact.id
-        console.log('function is being invoked')
-      })
-    }))
-    BooksAPI.update(book)
+  handleChange = (id) => {
+    console.log(id + " value has changed")
+  }
+
+  changeNumber=()=>{
+    this.setState((prevState)=>{
+      console.log(prevState);
+      return {
+        number :  prevState.number + 1
+      }
+    });
   }
 
 
-  render() {
+  // moveBook = (book) => {
+  //   this.setState((currentState) => ({
+  //     books: currentState.books.filter((b) => {
+  //       //return c.id !== contact.id
+  //       console.log('function is being invoked')
+  //     })
+  //   }))
+  //   BooksAPI.update(book)
+  // }
 
+  // handleChange = (event) => {
+  //   console.log("value has changed")
+    //console.log(this.props.id)
+    // this.setState({
+    //   book:
+    // })
+    //BooksAPI.update(this.props, this.props.id)
+  //}
+
+  // handleClick = (ev) => {
+  //       if (ev.keyCode === 13) {
+  //           console.log('Enter!');
+  //       }
+  //   }
+
+
+
+
+  render() {
+    // console.log(this.state.books)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -72,19 +104,19 @@ class BooksApp extends React.Component {
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
-                    <BookShelf books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
+                    <BookShelf changeNumber = {this.changeNumber} update={this.handleChange} books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
-                    <BookShelf books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
+                    <BookShelf update={this.handleChange} books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
-                    <BookShelf books={this.state.books.filter((book) => 'read' === book.shelf)} />
+                    <BookShelf update={this.handleChange} books={this.state.books.filter((book) => 'read' === book.shelf)} />
                   </div>
                 </div>
               </div>
