@@ -8,7 +8,6 @@ import BookShelf from './BookShelf'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    selected: 'xJ',
     number: 1,
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -31,6 +30,7 @@ class BooksApp extends React.Component {
 
   handleChange = (id) => {
     console.log(id + " value has changed")
+
   }
 
   changeNumber=()=>{
@@ -41,6 +41,8 @@ class BooksApp extends React.Component {
       }
     });
   }
+
+
 
 
   // moveBook = (book) => {
@@ -104,7 +106,11 @@ class BooksApp extends React.Component {
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
-                    <BookShelf changeNumber = {this.changeNumber} update={this.handleChange} books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
+                    <BookShelf
+                                handleChange={this.handleChange}
+                                changeNumber={this.changeNumber}
+                                update={this.handleChange}
+                                books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
                   </div>
                 </div>
                 <div className="bookshelf">

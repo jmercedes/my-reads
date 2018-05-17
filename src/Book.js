@@ -6,6 +6,13 @@ class Book extends Component{
     this.props.changeNumber();//call child method
   }
 
+  handleChange = (event) => {
+    console.log(event.target.value)
+    //id = this.props.id;
+    this.props.handleChange(event);
+  }
+
+
 
 
   render(){
@@ -14,7 +21,7 @@ class Book extends Component{
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+ this.props.thumbnail +')' }}></div>
                 <div className="book-shelf-changer">
-                  <select value={this.props.bookshelf} onChange={this.changeNumber} >
+                  <select value={this.props.bookshelf} onChange={this.handleChange} >
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>

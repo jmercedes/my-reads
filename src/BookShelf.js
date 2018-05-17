@@ -19,6 +19,7 @@ import Book from './Book'
                  shelf={book.shelf}
                  id={book.id}
                  changeNumber={this.props.changeNumber}
+                 handleChange={this.props.handleChange}
              />
            </li>
          ))}
