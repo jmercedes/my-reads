@@ -28,11 +28,27 @@ class BooksApp extends React.Component {
         })
   }
 
-  handleChange = (id) => {
-    console.log(id + " value has changed")
+  handleChange = (event, id) => {
+
+    const books = this.state.books.map(book => {
+      if (book.id === id) {
+        return {...book, shelf: event.target.value };
+      }
+      return book;
+    })
+    this.setState({ books });
 
   }
 
+//   const cars = this.state.cars.map(car => {
+//     if(car.id === id) {
+//         return { ...car, shelf: event.target.value };
+//     }
+//     return car;
+// });
+// this.setState({ cars });
+
+//prevState.books.filter((book) => {{book.id === id}
   changeNumber=()=>{
     this.setState((prevState)=>{
       console.log(prevState);
@@ -41,35 +57,6 @@ class BooksApp extends React.Component {
       }
     });
   }
-
-
-
-
-  // moveBook = (book) => {
-  //   this.setState((currentState) => ({
-  //     books: currentState.books.filter((b) => {
-  //       //return c.id !== contact.id
-  //       console.log('function is being invoked')
-  //     })
-  //   }))
-  //   BooksAPI.update(book)
-  // }
-
-  // handleChange = (event) => {
-  //   console.log("value has changed")
-    //console.log(this.props.id)
-    // this.setState({
-    //   book:
-    // })
-    //BooksAPI.update(this.props, this.props.id)
-  //}
-
-  // handleClick = (ev) => {
-  //       if (ev.keyCode === 13) {
-  //           console.log('Enter!');
-  //       }
-  //   }
-
 
 
 
@@ -116,13 +103,19 @@ class BooksApp extends React.Component {
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
-                    <BookShelf update={this.handleChange} books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
+                    <BookShelf
+                                handleChange={this.handleChange}
+                                update={this.handleChange}
+                                books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
                   </div>
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
-                    <BookShelf update={this.handleChange} books={this.state.books.filter((book) => 'read' === book.shelf)} />
+                    <BookShelf
+                                handleChange={this.handleChange}
+                                update={this.handleChange}
+                                books={this.state.books.filter((book) => 'read' === book.shelf)} />
                   </div>
                 </div>
               </div>

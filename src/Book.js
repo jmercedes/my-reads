@@ -7,9 +7,8 @@ class Book extends Component{
   }
 
   handleChange = (event) => {
-    console.log(event.target.value)
-    //id = this.props.id;
-    this.props.handleChange(event);
+    let id = this.props.id;
+    this.props.handleChange(event, id);
   }
 
 
