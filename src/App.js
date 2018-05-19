@@ -4,6 +4,7 @@ import './App.css'
 import BookShelf from './BookShelf'
 import Search from './Search'
 import {Link} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 
 class BooksApp extends React.Component {
@@ -49,84 +50,68 @@ class BooksApp extends React.Component {
 // this.setState({ cars });
 
 //prevState.books.filter((book) => {{book.id === id}
-  changeNumber=()=>{
-    this.setState((prevState)=>{
-      console.log(prevState);
-      return {
-        number :  prevState.number + 1
-      }
-    });
-  }
 
 
 
   render() {
     // console.log(this.state.books)
+    //onClick={() => this.setState({ showSearchPage: false })}
+    //
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <Link exact="true" to='/' className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</Link >
-              <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
+        {this.state.showSearchPage
+          ? ( <Route path="/search" render={() =>  (
 
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <Search books={this.state.books} />
+                  <Search books={this.state.books} />
+
+              )}/>
+            )
+
+         : ( <Route exact path="/" render={()=> (
+
+               <div className="list-books">
+                 <div className="list-books-content">
+                   <div>
+                     <div className="bookshelf">
+                       <h2 className="bookshelf-title">Currently Reading</h2>
+                       <div className="bookshelf-books">
+                         <BookShelf
+                                     handleChange={this.handleChange}
+                                     changeNumber={this.changeNumber}
+                                     update={this.handleChange}
+                                     books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
+                       </div>
+                     </div>
+                     <div className="bookshelf">
+                       <h2 className="bookshelf-title">Want to Read</h2>
+                       <div className="bookshelf-books">
+                         <BookShelf
+                                     handleChange={this.handleChange}
+                                     update={this.handleChange}
+                                     books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
+                       </div>
+                     </div>
+                     <div className="bookshelf">
+                       <h2 className="bookshelf-title">Read</h2>
+                       <div className="bookshelf-books">
+                         <BookShelf
+                                     handleChange={this.handleChange}
+                                     update={this.handleChange}
+                                     books={this.state.books.filter((book) => 'read' === book.shelf)} />
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div className="open-search">
+                   <Link to='/search' onClick={() => this.setState({ showSearchPage: true })}>Add a book</Link>
+
+                 </div>
+               </div>
 
 
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
-        ) : (
-
-          <div className="list-books">
-            <div className="list-books-content">
-              <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <BookShelf
-                                handleChange={this.handleChange}
-                                changeNumber={this.changeNumber}
-                                update={this.handleChange}
-                                books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <BookShelf
-                                handleChange={this.handleChange}
-                                update={this.handleChange}
-                                books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <BookShelf
-                                handleChange={this.handleChange}
-                                update={this.handleChange}
-                                books={this.state.books.filter((book) => 'read' === book.shelf)} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="open-search">
-              <Link to='/search' onClick={() => this.setState({ showSearchPage: true })}>Add a book</Link>
-
-            </div>
-          </div>
-        )}
+             )} />
+           )
+      }
       </div>
     )
   }

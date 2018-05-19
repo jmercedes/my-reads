@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 import ResultList from './ResultList'
+import { Link } from 'react-router-dom'
 
 class Search extends Component {
   state = {
@@ -69,27 +70,45 @@ class Search extends Component {
 
   render(){
 
-    // const showBooks = this.state.query === ''
-    //       ?   this.state.results
-    //       :   this.props.books.filter((book) => (book.title.toLowerCase().includes(this.state.query.toLowerCase)))
     console.log(this.state.results)
     return (
-      <div>
-        <div className="search-books-input-wrapper">
-        <form>
-          <input
-            placeholder="Search for..."
-            ref={input => this.search = input}
-            onChange={this.handleInputChange}
-          />
-          <ResultList results={this.state.results} />
-        </form>
+      <div> // container div
+
+      <div className="search-books">
+        <div className="search-books-bar">
+            <Link exact="true" to='/' className="close-search" >Close</Link >
+            <div className="search-books-input-wrapper">
+              <div className="search-books-input-wrapper">
+                {/*
+                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
+                  You can find these search terms here:
+                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
+
+                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
+                  you don't find a specific author or title. Every search is limited by search terms.
+                */}
+
+                <form>
+                  <input
+                    placeholder="Search for..."
+                    ref={input => this.search = input}
+                    onChange={this.handleInputChange}
+                  />
+                </form>
+              </div>
+            </div>
         </div>
+      </div>
 
-
-        <div>{this.state.query}</div>
-
+      <div className="list-books results-body">
+        <div className="list-books">
+          <div className="list-books-content">
+              <ResultList results={this.state.results} />
+          </div>
         </div>
+      </div>
+
+      </div> // End of container
 
     )
   }
