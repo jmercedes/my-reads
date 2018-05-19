@@ -30,7 +30,6 @@ class BooksApp extends React.Component {
   }
 
   handleChange = (event, id) => {
-
     const books = this.state.books.map(book => {
       if (book.id === id) {
         return {...book, shelf: event.target.value };
@@ -78,7 +77,7 @@ class BooksApp extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <Search />
+                <Search books={this.state.books} />
 
 
               </div>
