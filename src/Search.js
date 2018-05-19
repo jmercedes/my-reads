@@ -2,16 +2,17 @@ import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 
+const queryInitalValue = ''
 
 class Search extends Component {
   state = {
-    query: '',
+    query: queryInitalValue,
     results: []
   }
 
   componentDidMount() {
     const { query } = this.state
-    this.fetchSearchBook(query)
+    this.getBooks(query)
   }
 
   setSearchBook = (query) => {
@@ -20,10 +21,10 @@ class Search extends Component {
     }))
   }
 
-  fetchSearchBook = (e) => {
-  BooksAPI.search(e)// TODO: update BooksAPI
+  getBooks = (e) => {
+  BooksAPI.search(e)
     .then((query) => {
-      this.setSearchBook(this.state.query)
+      this.setSearchBook(query)
       console.log(query)
     })
     .catch(error => this.setState(() => ({ error })))
@@ -31,7 +32,7 @@ class Search extends Component {
 
 
   updateQuery = (query) => {
-    this.fetchSearchBook(query)
+    this.getBooks(query)
     this.setState(() => ({
       query: query.trim()
     }))
@@ -48,8 +49,6 @@ class Search extends Component {
     // const showBooks = this.state.query === ''
     //       ?   this.state.results
     //       :   this.props.books.filter((book) => (book.title.toLowerCase().includes(this.state.query.toLowerCase)))
-
-    console.log(Object.getOwnPropertyNames(this.setSearchBook(this.state.query)))
 
     return (
       <div>
@@ -69,6 +68,8 @@ class Search extends Component {
           onChange={(event) => this.updateQuery(event.target.value) }
         />
         </div>
+
+
 
         <ol className="books-grid">
         </ol>
