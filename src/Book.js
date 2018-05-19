@@ -2,9 +2,6 @@ import React, {Component} from 'react'
 
 class Book extends Component{
 
-  changeNumber=()=> {
-    this.props.changeNumber();//call child method
-  }
 
   handleChange = (event) => {
     let id = this.props.id;

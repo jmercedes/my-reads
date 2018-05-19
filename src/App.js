@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+import Header from './Header'
 import BookShelf from './BookShelf'
 import Search from './Search'
 import {Link} from 'react-router-dom'
@@ -10,7 +11,6 @@ import { Route } from 'react-router-dom'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    number: 1,
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -68,7 +68,8 @@ class BooksApp extends React.Component {
             )
 
          : ( <Route exact path="/" render={()=> (
-
+              <div>
+               <Header/>
                <div className="list-books">
                  <div className="list-books-content">
                    <div>
@@ -107,6 +108,7 @@ class BooksApp extends React.Component {
 
                  </div>
                </div>
+              </div>
 
 
              )} />

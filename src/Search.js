@@ -36,34 +36,6 @@ class Search extends Component {
     }
 
 
-//   componentDidMount() {
-//     const { query } = this.state
-//     this.getBooks(query)
-//   }
-//
-//   setSearchBook = (query) => {
-//     this.setState(() => ({
-//       query, // call render method
-//     }))
-//   }
-//
-//   getBooks = (e) => {
-//   BooksAPI.search(e)
-//     .then((query) => {
-//       this.setSearchBook(query)
-//       console.log(query)
-//     })
-//     .catch(error => this.setState(() => ({ error })))
-// }
-//
-//
-//   updateQuery = (query) => {
-//     this.getBooks(query)
-//     this.setState(() => ({
-//       query: query.trim()
-//     }))
-//     //console.log(this.state.query)
-//   }
 
   // ================================================
 
@@ -71,12 +43,13 @@ class Search extends Component {
   render(){
 
     console.log(this.state.results)
+    //onClick={() => this.setState({ props.showSearchPage: false })}
     return (
       <div> // container div
 
       <div className="search-books">
         <div className="search-books-bar">
-            <Link exact="true" to='/' className="close-search" >Close</Link >
+            <Link to='/' className="close-search" >Close</Link >
             <div className="search-books-input-wrapper">
               <div className="search-books-input-wrapper">
                 {/*
