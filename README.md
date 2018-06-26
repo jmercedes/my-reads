@@ -28,7 +28,7 @@ To get started developing right away:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
-## What You're Getting
+## Project content
 ```bash
 ├── CONTRIBUTING.md
 ├── README.md - This file.
@@ -38,6 +38,9 @@ To get started developing right away:
 │   ├── favicon.ico # React Icon, You may change if you wish.
 │   └── index.html # DO NOT MODIFY
 └── src
+    ├── components
+    │   ├── App.js # React Icon, You may change if you wish.
+    │   └── Book.js # DO NOT MODIFY
     ├── App.css # Styles for your app. Feel free to customize this as you desire.
     ├── App.js # This is the root of your app. Contains static HTML right now.
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
