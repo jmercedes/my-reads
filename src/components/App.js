@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import * as BooksAPI from '../BooksAPI'
+import '../App.css'
 import Header from './Header'
 import BookShelf from './BookShelf'
 import Search from './Search'
@@ -38,8 +38,25 @@ class BooksApp extends React.Component {
       return book;
     })
     this.setState({ books });
-
   }
+
+// //Cannot read property 'value'
+//   handleChange = (event, id) => {
+//     const value = event.target.value
+//     const books = this.state.books.map(book => {
+//       if (book.id === id) {
+//
+//         BooksAPI.update(book, id)
+//           .then( (obj) => { this.setState({...book, shelf: value})  })
+//       }
+//       return book;
+//     })
+//     this.setState({ books })
+//   }
+
+  //bookUpdate = () => {
+
+  //}
 
 //   const cars = this.state.cars.map(car => {
 //     if(car.id === id) {

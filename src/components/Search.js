@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from '../BooksAPI'
 import Book from './Book'
 import ResultList from './ResultList'
 import { Link } from 'react-router-dom'
