@@ -18,11 +18,15 @@ class Search extends Component {
       this.setState({
         query: this.search.value
       }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
+      if (this.state.query.length > 1) {
+
           this.getInfo()
-          }
-        }
+
+      } else {
+        this.setState({
+          results: []
+        })
+      }
       })
     }
 
@@ -33,6 +37,7 @@ class Search extends Component {
             results: books
           })
         })
+      console.log(this.state.books)
     }
 
 

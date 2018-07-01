@@ -15,7 +15,13 @@ class Book extends Component{
     return (
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+ this.props.thumbnail +')' }}></div>
+                <div className="book-cover"
+                  style={{
+                            width: 128,
+                            height: 193,
+                            backgroundImage: `url(${this.props.thumbnail})` }}>
+
+                </div>
                 <div className="book-shelf-changer">
                   <select value={this.props.bookshelf} onChange={this.handleChange} >
                     <option value="none" disabled>Move to...</option>
@@ -34,6 +40,9 @@ class Book extends Component{
 };
 
 export default Book
+
+
+// 'url('+ this.props.thumbnail +')'
 
 
 

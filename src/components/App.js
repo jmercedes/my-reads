@@ -30,50 +30,42 @@ class BooksApp extends React.Component {
         })
   }
 
-  handleChange = (event, id) => {
-    const books = this.state.books.map(book => {
-      if (book.id === id) {
-        return {...book, shelf: event.target.value };
-      }
-      return book;
-    })
-    this.setState({ books });
+  handleBooks = (books) => {
+    this.setState(() => ({
+      books,
+    }))
+    //console.log(books);
   }
 
-// //Cannot read property 'value'
-//   handleChange = (event, id) => {
-//     const value = event.target.value
-//     const books = this.state.books.map(book => {
-//       if (book.id === id) {
-//
-//         BooksAPI.update(book, id)
-//           .then( (obj) => { this.setState({...book, shelf: value})  })
-//       }
-//       return book;
-//     })
-//     this.setState({ books })
-//   }
+  // What you can do instead is filter the books present in app state using
+ // the book id (books where book.id !== id) this will give you an array
+ // of books without the book you just updated then all you need to do
+ //  is concat this book you have with that array and use setState() to update the app state.
 
-  //bookUpdate = () => {
+  handleChange = (event, id) => {
 
-  //}
+    const shelf = event.target.value
+    const value = id
 
-//   const cars = this.state.cars.map(car => {
-//     if(car.id === id) {
-//         return { ...car, shelf: event.target.value };
-//     }
-//     return car;
-// });
-// this.setState({ cars });
+    BooksAPI.update({id}, shelf)
+      .then((obj) => {
+        const books = this.state.books.map((book) => {
+          if (book.id === id) { book.shelf = shelf }
+          return book
+        })
+        this.handleBooks(books)
+      })
+      .catch(error => this.setState(() => ({ error })))
+    }
 
-//prevState.books.filter((book) => {{book.id === id}
+
+
+
+
 
 
 
   render() {
-    // console.log(this.state.books)
-    //onClick={() => this.setState({ showSearchPage: false })}
-    //
     return (
       <div className="app">
         {this.state.showSearchPage
