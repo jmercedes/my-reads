@@ -5,7 +5,7 @@ import Header from './Header'
 import BookShelf from './BookShelf'
 import Search from './Search'
 import {Link} from 'react-router-dom'
-import { Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 
 class BooksApp extends React.Component {
@@ -37,10 +37,6 @@ class BooksApp extends React.Component {
     //console.log(books);
   }
 
-  // What you can do instead is filter the books present in app state using
- // the book id (books where book.id !== id) this will give you an array
- // of books without the book you just updated then all you need to do
- //  is concat this book you have with that array and use setState() to update the app state.
 
   handleChange = (event, id) => {
 
