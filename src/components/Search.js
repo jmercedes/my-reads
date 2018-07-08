@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import * as BooksAPI from '../BooksAPI'
-import Book from './Book'
 import ResultList from './ResultList'
 import { Link } from 'react-router-dom'
 
-
-const EMPTY_QUERY = ''
 
 class Search extends Component {
   state = {
@@ -13,7 +10,6 @@ class Search extends Component {
     results: []
   }
 
-// ================================================
 
     handleInputChange = () => {
       this.setState({
@@ -36,23 +32,19 @@ class Search extends Component {
               results: books
             })
           })
-        console.log(this.state.books)
       }
 
 
 
-  // ================================================
-
 
   render(){
 
-    console.log(this.state.results)
     return (
-      <div> // container div
+      <div>
 
       <div className="search-books">
         <div className="search-books-bar">
-            <Link to={{ pathname: '/', }} className="close-search" >Close</Link >
+            <Link to='/' className="close-search" />
             <div className="search-books-input-wrapper">
               <div className="search-books-input-wrapper">
                 <form>
@@ -70,7 +62,7 @@ class Search extends Component {
       <div className="list-books results-body">
         <div className="list-books">
           <div className="list-books-content">
-              <ResultList results={this.state.results} />
+              <ResultList results={this.state.results} handleChange={this.props.handleChange}  />
           </div>
         </div>
       </div>

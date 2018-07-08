@@ -1,10 +1,13 @@
-import React, { Component} from 'react'
+import React from 'react'
 import Book from './Book'
 
 
 
-const ResultList = (props, handleChange) => {
+const ResultList = (props) => {
 
+  
+
+  console.log(props.handleChange)
   const options = props.results.length > 1
     ? props.results.map(r => ( <li key={r.id}><Book
                                                 title={r.title}
@@ -18,12 +21,8 @@ const ResultList = (props, handleChange) => {
                                               />
                                 </li> ))
     : <li>Input search criteria</li>
-
-  console.log(props.results)
   return <ol className="books-grid">{options}</ol>
+
 }
 
 export default ResultList
-
-
-// r.imageLinks.smallThumbnail

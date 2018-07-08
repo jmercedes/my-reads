@@ -8,9 +8,6 @@ class Book extends Component{
     this.props.handleChange(event, id);
   }
 
-
-
-
   render(){
     return (
             <div className="book">
