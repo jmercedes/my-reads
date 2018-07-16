@@ -5,13 +5,12 @@ import Book from './Book'
 
 const ResultList = (props) => {
 
-  
-
-  console.log(props.handleChange)
   const options = props.results.length > 1
     ? props.results.map(r => ( <li key={r.id}><Book
+                                                id={r.id}
                                                 title={r.title}
                                                 author={r.authors}
+                                                shelf={ r.shelf === undefined ? 'none' :  r.shelf}
                                                 thumbnail={
                                                   r.imageLinks !== null && r.imageLinks !== 0 && r.imageLinks
                                                     ? r.imageLinks.smallThumbnail

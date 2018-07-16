@@ -24,11 +24,16 @@ class BooksApp extends React.Component {
         })
   }
 
+  
+
+
   handleBooks = (books) => {
     this.setState(() => ({
       books,
     }))
   }
+
+
 
 
   handleChange = (event, id) => {
@@ -73,8 +78,6 @@ class BooksApp extends React.Component {
                        <div className="bookshelf-books">
                          <BookShelf
                                      handleChange={this.handleChange}
-                                     changeNumber={this.changeNumber}
-                                     update={this.handleChange}
                                      books={this.state.books.filter((book) => 'currentlyReading' === book.shelf)} />
                        </div>
                      </div>
@@ -83,7 +86,6 @@ class BooksApp extends React.Component {
                        <div className="bookshelf-books">
                          <BookShelf
                                      handleChange={this.handleChange}
-                                     update={this.handleChange}
                                      books={this.state.books.filter((book) => 'wantToRead' === book.shelf)} />
                        </div>
                      </div>
@@ -92,7 +94,6 @@ class BooksApp extends React.Component {
                        <div className="bookshelf-books">
                          <BookShelf
                                      handleChange={this.handleChange}
-                                     update={this.handleChange}
                                      books={this.state.books.filter((book) => 'read' === book.shelf)} />
                        </div>
                      </div>

@@ -4,8 +4,9 @@ class Book extends Component{
 
 
   handleChange = (event) => {
-    let id = this.props.id;
-    this.props.handleChange(event, id);
+    let id = this.props.id
+    this.props.handleChange(event, id)
+    console.log(this.props)
   }
 
   render(){
@@ -20,7 +21,7 @@ class Book extends Component{
 
                 </div>
                 <div className="book-shelf-changer">
-                  <select value={this.props.bookshelf} onChange={this.handleChange} >
+                  <select value={ this.props.shelf } onChange={ this.handleChange } >
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
