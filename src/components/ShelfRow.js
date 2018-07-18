@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import Book from './Book'
+import PropTypes from 'prop-types'
+
 
 class ShelfRow extends Component {
   render() {
-    const {title, books, onShelfUpdate} = this.props
+
+    const { shelfTitle, books, onShelfUpdate} = this.props
     return (
       <div className="bookshelf">
-        <h1 className="bookshelf-title">{title}</h1>
+        <h1 className="bookshelf-title">{ shelfTitle }</h1>
       	<hr />
-        <div className="bookshelf-books">
-      	  <ul className="books-grid">
-            {books.length > 0 ? (books.map((book, index) => (
-              <Book
-                key={index}
-                book={book}
-                onShelfUpdate={onShelfUpdate}
-      		  />
-            )))
-  			: (<p>No Books in this shelf</p>)
-            }
-  		  </ul>
+          <div className="bookshelf-books">
+        	  <ul className="books-grid">
+              {books.length > 0 ? (books.map((book, index) => (
+                <Book
+                  key={index}
+                  book={book}
+                  onShelfUpdate={onShelfUpdate}
+        		  />
+              )))
+    			    : (<p>...</p>)
+              }
+    		  </ul>
         </div>
       </div>
     )

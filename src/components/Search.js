@@ -24,12 +24,12 @@ class Search extends Component {
     this.setState({ query })
   }
 
-  onShelfUpdate = (book, shelfName) => {
-    BooksAPI.update(book, shelfName)
+  onShelfUpdate = (book, shelf) => {
+    BooksAPI.update(book, shelf)
     const { books } = this.state
 	  const updateIndex = books.findIndex(b => b.id === book.id)
     const updateBook = books[updateIndex]
-    updateBook.shelf = shelfName
+    updateBook.shelf = shelf
 
     this.setState({
       books: [...books.slice(0, updateIndex), updateBook, ...books.slice(updateIndex + 1)]
@@ -80,7 +80,7 @@ class Search extends Component {
                 onShelfUpdate={this.onShelfUpdate}
       		  />
             )))
-  			: ( query.length === 0 ? (<p>No query entered</p>) : (<p>No Results Found</p>) )
+  			: ( query.length === 0 ? (<p>Enter search criteria</p>) : (<p>Book not found</p>) )
             }
   		  </ul>
         </div>
