@@ -7,8 +7,6 @@ This app allows the user to organize a list of books between three shelfs, Want 
 
 ### Title
 
-Is a functional component responsible for rendering the title of the app.
-
 ### Book
 
 ### ShelfRow
